@@ -1,0 +1,27 @@
+<h1 class="title">Edit Faculty Details</h1>
+
+<ng-container *ngIf="faculty$ | async as updatedFaculty">
+  <div class="update-student-form">
+    <form (ngSubmit)="updateFaculty()" #updateForm="ngForm">
+
+      <label class="form-label">
+        Name:
+        <input required [(ngModel)]="updatedFaculty.facultyName" name="facultyName" />
+      </label><br>
+
+      <label class="form-label">
+        Active:
+        <select class="styled-select" [(ngModel)]="updatedFaculty.isActive" name="isActive">
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </label><br>
+
+      <button type="submit" [disabled]="!updateForm.form.valid">Update Faculty</button>
+    </form>
+
+    <a routerLink="/faculties">Go back</a>
+  </div>
+</ng-container>
+
+<router-outlet></router-outlet>

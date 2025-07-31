@@ -1,0 +1,10 @@
+<nav style="margin-top: -2.5%;">
+  <a routerLink="/students" *ngIf="hasRole('Student')">Students</a>
+  <a routerLink="/departments" *ngIf="hasRole('Department')">Departments</a>
+  <a routerLink="/faculties" *ngIf="hasRole('Faculty')">Faculties</a>
+  <a routerLink="/courses" *ngIf="hasRole('Course')">Courses</a>
+  <a routerLink="/exams" *ngIf="hasRole('Exam') || hasRole('Student')">Exams</a>
+  <a routerLink="/roles" *ngIf="hasRole('Admin')">Assign Role</a>
+  <app-logout></app-logout>
+</nav>
+<router-outlet></router-outlet>

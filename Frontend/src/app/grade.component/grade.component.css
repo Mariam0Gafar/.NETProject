@@ -1,0 +1,134 @@
+.student-table-section {
+  padding: 0 30px;
+  margin-top: 20px;
+}
+
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  text-align: center;      
+  margin-top: 3%;    
+  margin-bottom: -3%;     
+}
+
+.student-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-top: 5%;
+}
+
+.student-table th {
+  padding: 10px 16px; 
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.student-table td {
+  padding: 9px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td.actions {
+  display: flex;
+  align-items: center; 
+  justify-content: flex-start;
+  height: 40px;
+}
+
+.sort-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 6px;
+  font-size: 16px;
+  color: #444;
+}
+
+.sort-button:hover {
+  color: #000;
+}
+
+button.update,
+button.delete {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+button.update {
+  background-color: #0041cc;
+  color: white;
+}
+
+button.update:hover {
+  background-color: #002e99;
+}
+
+button.delete {
+  background-color: #c00;
+  color: white;
+}
+
+button.delete:hover {
+  background-color: #a00;
+}
+
+
+.pagination-controls {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+.search-sort-form {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 30px;
+}
+
+.styled-select {
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white;
+  color: #444;
+}
+
+
+.search-bar-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 30px;
+}
+
+.search-bar {
+  padding: 8px;
+  font-size: 14px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

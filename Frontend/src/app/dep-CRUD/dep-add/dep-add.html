@@ -1,0 +1,32 @@
+<h1 class="title">Add Department</h1>
+
+<div class="add-student-form">
+  <form (ngSubmit)="addDep()" #addForm="ngForm">
+    <label class="form-label">
+      Name:
+      <input type="text" required [(ngModel)]="newDep.name" name="name" />
+    </label>
+
+    <label class="form-label">
+      Description:
+      <input type="text" required [(ngModel)]="newDep.description" name="description" />
+    </label>
+
+   <ng-container *ngIf="faculties$ | async as faculties">
+    <label class="form-label">
+        Faculty:
+        <select class="styled-select"
+                [(ngModel)]="selectedFacultyName"
+                (ngModelChange)="onFacultyChange($event)"
+                name="faculties">
+        <option *ngFor="let f of faculties" [value]="f.facultyName">
+            {{ f.facultyName }}
+        </option>
+        </select>
+    </label>
+    </ng-container>
+    <button type="submit" [disabled]="!addForm.form.valid">Add Department</button>
+  </form>
+
+  <a routerLink="/departments">Go back</a>
+</div>

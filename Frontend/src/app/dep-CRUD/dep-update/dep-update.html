@@ -1,0 +1,24 @@
+<h1 class="title">Edit Department Details</h1>
+
+<ng-container *ngIf="department$ | async as updatedDepartment">
+  <div class="update-student-form">
+    <form (ngSubmit)="updateDepartment()" #updateForm="ngForm">
+
+      <label class="form-label">
+        Name:
+        <input required [(ngModel)]="updatedDepartment.name" name="name" />
+      </label><br>
+
+      <label class="form-label">
+        Description:
+        <input required [(ngModel)]="updatedDepartment.description" name="description" />
+      </label><br>
+
+      <button type="submit" [disabled]="!updateForm.form.valid">Update Department</button>
+    </form>
+
+    <a routerLink="/departments">Go back</a>
+  </div>
+</ng-container>
+
+<router-outlet></router-outlet>

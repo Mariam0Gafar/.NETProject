@@ -1,0 +1,11 @@
+<div *ngIf="examSubmission" class="exam-container"> 
+  <h2>{{ examSubmission.title }}</h2>
+
+  <div *ngFor="let ans of examSubmission.studentAnswers">
+    {{ ans.questionId }}. {{ ans.question }}
+    <input [(ngModel)]="ans.answer" type="text" placeholder="Your answer" />
+  </div>
+
+  <button (click)="submit()">Submit Exam</button>
+  <a routerLink="/exams">Go back</a>
+</div>

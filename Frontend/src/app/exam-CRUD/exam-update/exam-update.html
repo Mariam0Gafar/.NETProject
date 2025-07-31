@@ -1,0 +1,57 @@
+<div *ngIf="(exam$ | async) as exam" class="exam-container">
+  <div *ngIf="(questions$ | async) as questions">
+    <div *ngIf="(courses$ | async) as c">
+    <h2>Update Exam</h2>
+
+    <div class="form-group">
+      <div class="form-row" style="margin-top: 5%;">
+        <label>Title:</label>
+        <input [(ngModel)]="exam.title" type="text" placeholder="Exam Title" name="title" />
+      </div>
+
+      <div *ngIf="(courses$ | async)" class="form-row">
+        <label for="course">Course:</label>
+        <ng-select
+        class="styled-select"
+        name="courseId"
+        [items]="c"
+        bindLabel="name"
+        bindValue="id"
+        [(ngModel)]="exam.courseId"
+        [searchable]="true"
+        [virtualScroll]="true"
+        (search)="onSearchChange($event.term)">
+      </ng-select>
+      </div>
+
+      <div class="form-row">
+        <label>
+          Active
+          <input class="checkbox" [(ngModel)]="exam.isActive" type="checkbox" name="isActive" />
+        </label>
+      </div>
+    </div>
+
+    <h4 style="margin-top: 20px;">Questions</h4>
+
+    <div *ngFor="let question of questions; let i = index">
+      {{ i + 1 }}.
+      <input
+        [(ngModel)]="question.description"
+        type="text"
+        placeholder="Question Text"
+        name="desc{{ i }}"
+      />
+      <input
+        [(ngModel)]="question.correctAnswer"
+        type="text"
+        placeholder="Correct Answer"
+        name="ans{{ i }}"
+      />
+    </div>
+
+    <button style="margin-top: 20px;" (click)="updateExam()">Update Exam</button>
+    <a routerLink="/exams" style="margin-top: 20px;">Go back</a>
+  </div>
+</div>
+</div>

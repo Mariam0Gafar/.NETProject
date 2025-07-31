@@ -1,0 +1,50 @@
+<app-home></app-home>
+<h1>Faculties</h1>
+
+<section class="search-bar-wrapper">
+  <input
+    type="text"
+    placeholder="Search by name"
+    [(ngModel)]="searchTerm"
+    (ngModelChange)="onSearchChange($event)"
+    class="search-bar"
+  />
+</section>
+
+<section class="faculty-table-section" *ngIf="filteredFacultyList$ | async as facultyList">
+  <table class="student-table">
+    <thead>
+      <tr>
+        <th>
+          Name
+          <button class="sort-button" (click)="toggleSort()">
+            {{ sortOrder === 'asc' ? '↑' : '↓' }}
+          </button>
+        </th>
+        <th>Active</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let faculty of facultyList">
+        <td>{{ faculty.facultyName }}</td>
+        <td>{{ faculty.isActive ? 'Yes' : 'No' }}</td>
+        <td class="actions">
+          <button class="update" (click)="edit(faculty.id)">Edit</button>
+          <button class="delete" (click)="delete(faculty.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-controls">
+    <button style="margin-right: -0.2%;" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>{{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+
+  <div class="nav-links">
+    <a style="margin-left: 12%;" routerLink="/faculty-add">Add Faculty</a>
+    <a style="margin-left: 12%;" routerLink="/home">Go Back</a>
+  </div>
+</section>

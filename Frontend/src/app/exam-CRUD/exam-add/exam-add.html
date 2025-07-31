@@ -1,0 +1,47 @@
+<h1 class="title">Add Exam</h1>
+
+<div class="add-student-form">
+  <form (ngSubmit)="addExam()" #examForm="ngForm">
+
+    <label class="form-label">
+      Title:
+      <input required [(ngModel)]="newExam.title" name="title" />
+    </label>
+
+    <label class="form-label">Course:</label>
+<ng-select
+  class="styled-select"
+  name="courseId"
+  [items]="courses$ | async"
+  bindLabel="name"
+  bindValue="id"
+  [(ngModel)]="newExam.courseId"
+  [searchable]="true"
+  [virtualScroll]="true"
+  (search)="onSearchChange($event.term)">
+</ng-select>
+
+    <div *ngFor="let q of newQuestions; let i = index" class="question-block">
+      <h3>Question {{ i + 1 }}</h3>
+
+      <label class="form-label">
+        Description:
+        <input required [(ngModel)]="q.description" [name]="'description' + i" />
+      </label>
+
+      <label class="form-label">
+        Correct Answer:
+        <input required [(ngModel)]="q.correctAnswer" [name]="'correctAnswer' + i" />
+      </label>
+
+      <button type="button" (click)="removeQuestion(i)">Remove</button>
+    </div>
+
+    <button type="button" (click)="addQuestion()">Add Question</button>
+    <br><br>
+
+    <button type="submit" [disabled]="!examForm.form.valid">Add Exam</button>
+  </form>
+
+  <a routerLink="/exams">Go Back</a>
+</div>

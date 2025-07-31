@@ -1,0 +1,41 @@
+<h1 class="title">Add A New Student</h1>
+
+<div class="add-student-form">
+  <form (ngSubmit)="addStudent()" #studentForm="ngForm">
+    <label class="form-label">
+      Name:
+      <input required [(ngModel)]="newStudent.name" name="name" />
+    </label>
+
+    <label class="form-label">
+      Email:
+      <input required [(ngModel)]="newStudent.email" name="email" />
+    </label>
+
+    <label class="form-label">
+      Phone Number:
+      <input required [(ngModel)]="newStudent.phoneNumber" name="phoneNumber" />
+    </label>
+
+    <ng-container *ngIf="departments$ | async as deps">
+    <label class="form-label">
+        Department:
+        <select class="styled-select"
+                [(ngModel)]="selectedDepartmentName"
+                (ngModelChange)="onDepartmentChange($event)"
+                name="department">
+        <option *ngFor="let dep of deps" [value]="dep.name">
+            {{ dep.name }}
+        </option>
+        </select>
+    </label>
+    </ng-container>
+
+
+    <button type="submit" [disabled]="!studentForm.form.valid">Add Student</button>
+  </form>
+
+  <a routerLink="/students">Go back</a>
+</div>
+
+<router-outlet></router-outlet>

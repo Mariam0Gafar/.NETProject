@@ -1,0 +1,30 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="login-title">Register</h2>
+
+    <form (ngSubmit)="onRegister()" class="login-form">
+      <label for="email">Email:</label>
+      <input type="email" [(ngModel)]="registerData.email" name="email" required placeholder="Enter your email" />
+
+      <label for="password">Password:</label>
+      <input type="password" [(ngModel)]="registerData.password" name="password" required placeholder="Enter your password" />
+
+      <label for="name">Name:</label>
+      <input type="text" [(ngModel)]="registerData.name" name="name" required placeholder="Enter your name" />
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" [(ngModel)]="registerData.phoneNumber" name="phoneNumber" required placeholder="Enter your phone number" />
+
+     <label for="departmentId">Department:</label>
+    <select [(ngModel)]="registerData.departmentId" name="departmentId" required >
+      <option value="0" disabled selected>Select department</option>
+      <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
+    </select>
+
+
+      <button type="submit" class="btn-primary">Register</button>
+    </form>
+
+<div *ngIf="msg" class="success-msg">{{ msg }}</div>
+<div *ngIf="error" class="error-msg">{{ error }}</div>  </div>
+</div>

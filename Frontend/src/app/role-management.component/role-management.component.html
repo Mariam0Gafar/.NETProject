@@ -1,0 +1,35 @@
+<h1>Assign Roles to Users</h1>
+<section class="student-table-section">
+<table class="student-table">
+  <tr>
+    <th>Email</th>
+    <th>Name</th>
+    <th>Role</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let user of users$ | async">
+    <td>{{ user.email }}</td>
+    <td>{{ user.userName }}</td>
+    <td>
+     <select
+  class="styled-select"
+  multiple
+  [name]="'roles_' + user.id"
+  [(ngModel)]="selectedRoles[user.id]"
+>
+  <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+</select>
+
+    </td>
+    <td>
+      <button (click)="assignRoles(user.id, user.userName)">Assign</button>
+      <div *ngIf="assignMessages[user.id]" class="message-box">
+    {{ assignMessages[user.id] }}
+  </div>
+    </td>
+  </tr>
+</table>
+</section>
+<div class="nav-links">
+    <a style="margin-left: 35%;" routerLink="/home">Go back</a>
+  </div>

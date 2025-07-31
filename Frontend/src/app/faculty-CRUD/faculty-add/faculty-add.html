@@ -1,0 +1,22 @@
+<h1 class="title">Add Faculty</h1>
+
+<div class="add-student-form">
+  <form (ngSubmit)="addFaculty()" #facultyForm="ngForm">
+    <label class="form-label">
+      Name:
+      <input required [(ngModel)]="newFaculty.facultyName" name="facultyName" />
+    </label>
+
+    <label class="form-label">
+      Active:
+      <select [(ngModel)]="newFaculty.isActive" name="isActive" class="styled-select">
+        <option [ngValue]="true">Yes</option>
+        <option [ngValue]="false">No</option>
+      </select>
+    </label>
+
+    <button type="submit" [disabled]="!facultyForm.form.valid">Add Faculty</button>
+  </form>
+
+  <a routerLink="/faculties">Go Back</a>
+</div>

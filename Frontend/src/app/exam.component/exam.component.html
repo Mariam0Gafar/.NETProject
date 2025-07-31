@@ -1,0 +1,65 @@
+<app-home></app-home>
+<h1>Exams</h1>
+<section>
+        <section class="search-bar-wrapper">
+        <input
+          type="text"
+          placeholder="Search by name"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange($event)"
+          class="search-bar"
+        />
+      </section>
+  <section class="student-table-section" *ngIf="filteredExamList$ | async as examList">
+
+  <table class="student-table" *ngIf="coursesMap$ | async as c">
+    <thead>
+      <tr>
+        <th>Title
+          <button class="sort-button" (click)="toggleSort()">
+            {{ sortOrder === 'asc' ? '↑' : '↓' }}
+          </button>
+        </th>
+        <th>Active</th>
+        <th>Course</th>
+        <th *ngIf="hasRole('Student')">Grade</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let x of examList">
+          <ng-container *ngIf="grades$ | async">
+        <td>{{ x.title }}</td>
+        <td>{{ x.isActive }}</td>
+        <td>{{ x.courseId !== null ? c[x.courseId] : 'Unknown' }}</td>
+        <td *ngIf="hasRole('Student')" >{{getGradeForExam(x.id)}}</td>
+      <td class="actions">
+  <ng-container *ngIf="hasRole('Admin') || hasRole('Exam') || (x.isActive && !isAdmin() && getGradeForExam(x.id) === 'N/A' && hasRole('Student')); else emptyActions">
+    <button *ngIf="x.isActive && !isAdmin() && getGradeForExam(x.id) === 'N/A' && hasRole('Student')"
+      [routerLink]="['/exam', x.id]">Take</button>
+    <button *ngIf="hasRole('Admin') || hasRole('Exam')" (click)="goToGrades(x.id)">Grades</button>
+    <button *ngIf="hasRole('Admin') || hasRole('Exam')" class="update" (click)="editExam(x.id)">Edit</button>
+    <button *ngIf="hasRole('Admin') || hasRole('Exam')" class="delete" (click)="deleteExam(x.id)">Delete</button>
+  </ng-container>
+  <ng-template #emptyActions>
+    <span>&nbsp;</span> 
+  </ng-template>
+</td>
+
+          </ng-container>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>{{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+</section>
+ <div class="nav-links">
+    <a style="margin-left: 12%;" routerLink="/exam-add">Add Exam</a>
+    <a style="margin-left: 12%;" routerLink="/home">Go back</a>
+  </div>
+       
+</section>

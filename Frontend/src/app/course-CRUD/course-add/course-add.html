@@ -1,0 +1,36 @@
+<h1 class="title">Add A New Course</h1>
+
+<div class="add-student-form">
+  <form (ngSubmit)="addCourse()" #courseForm="ngForm">
+    <label class="form-label">
+      Name:
+      <input required [(ngModel)]="newCourse.name" name="name" />
+    </label>
+
+    <label class="form-label">
+      Description:
+      <input required [(ngModel)]="newCourse.description" name="description" />
+    </label>
+
+    <ng-container *ngIf="departments$ | async as deps">
+      <label class="form-label">
+        Department:
+        <select class="styled-select"
+                [(ngModel)]="selectedDepartmentName"
+                (ngModelChange)="onDepartmentChange($event)"
+                name="department">
+          <option value="">-- None --</option>
+          <option *ngFor="let dep of deps" [value]="dep.name">
+            {{ dep.name }}
+          </option>
+        </select>
+      </label>
+    </ng-container>
+
+    <button type="submit" [disabled]="!courseForm.form.valid">Add Course</button>
+  </form>
+
+  <a routerLink="/courses">Go back</a>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,24 @@
+<h1>Grades for Exam {{ examId }}</h1>
+
+<section class="student-table-section">
+<table class="student-table" *ngIf="sMap$ | async as map">
+  <tr>
+    <th>Student ID</th>
+    <th>Student Name</th>
+    <th>Grade</th>
+  </tr>
+  <tr *ngFor="let g of grades$ | async">
+    <td>{{ g.studentId }}</td>
+    <td>{{map[g.studentId]}}</td>
+    <td>{{ g.grade }}</td>
+  </tr>
+</table>
+</section>
+ <div class="nav-links">
+    <a style="margin-left: 35%;" routerLink="/exams">Go back</a>
+  </div>
+<!-- <div class="pagination-controls">
+    <button style="margin-right: -0.2%;" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>{{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div> -->
