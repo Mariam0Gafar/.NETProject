@@ -1,0 +1,13 @@
+# Backend
+bin/
+obj/
+*.user
+*.vspscc
+.vs/
+appsettings.*.json
+
+# Frontend (Angular)
+node_modules/
+dist/
+.angular/
+.env
