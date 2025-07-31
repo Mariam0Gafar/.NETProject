@@ -23,7 +23,7 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/.NetProject.git
+git clone https://github.com/Mariam0Gafar/.NETProject.git
 cd .NetProject
 ````
 
